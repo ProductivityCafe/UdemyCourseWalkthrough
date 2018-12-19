@@ -4,10 +4,12 @@
     <item
             android:id="@+id/navigation_tasks"
             android:icon="@drawable/ic_tasks"
+            android:iconTint="@color/colorPrimaryDark"
             android:title="@string/title_task"/>
 
     <item
             android:id="@+id/navigation_notes"
             android:icon="@drawable/ic_notes"
+            android:iconTint="@color/colorPrimaryDark"
             android:title="@string/title_note"/>
 </menu>
