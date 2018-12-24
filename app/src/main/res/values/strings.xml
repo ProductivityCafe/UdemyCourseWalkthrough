@@ -8,6 +8,9 @@
     <string name="title_task">Tasks</string>
     <string name="title_note">Notes</string>
 
+    <string name="add_button_task">Add New Task</string>
+    <string name="add_button_note">Add New Note</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

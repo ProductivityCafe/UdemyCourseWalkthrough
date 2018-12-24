@@ -7,19 +7,28 @@ import androidx.recyclerview.widget.RecyclerView
 import course.intermediate.notes.R
 import course.intermediate.notes.foundations.BaseRecyclerAdapter
 import course.intermediate.notes.models.Note
-import kotlinx.android.synthetic.main.item_note.view.*
+import course.intermediate.notes.views.NoteView
+import kotlinx.android.synthetic.main.view_add_button.view.*
 
 class NoteAdapter(
     notes: MutableList<Note> = mutableListOf()
 ): BaseRecyclerAdapter<Note>(notes) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
-    )
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_ADD_BUTTON) {
+        AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
+    } else {
+        NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
+    }
 
-    class ViewHolder(view: View) : BaseViewHolder<Note>(view) {
+    class NoteViewHolder(view: View) : BaseViewHolder<Note>(view) {
         override fun onBind(data: Note) {
-            view.descriptionView.text = data.description
+            (view as NoteView).initView(data)
+        }
+    }
+
+    class AddButtonViewHolder(view: View): BaseRecyclerAdapter.AddButtonViewHolder(view) {
+        override fun onBind(data: Unit) {
+            view.buttonText.text = view.context.getText(R.string.add_button_note)
         }
     }
 
