@@ -33,7 +33,7 @@ abstract class BaseRecyclerAdapter<T : Any>(
         abstract fun onBind(data: E, listIndex: Int)
     }
 
-    abstract class AddButtonViewHolder(view: View): BaseViewHolder<Unit>(view)
+    abstract class AddButtonViewHolder(view: View) : BaseViewHolder<Unit>(view)
 
     companion object {
 

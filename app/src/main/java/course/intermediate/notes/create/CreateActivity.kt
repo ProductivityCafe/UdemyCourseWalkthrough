@@ -1,7 +1,7 @@
 package course.intermediate.notes.create
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import course.intermediate.notes.R
 import course.intermediate.notes.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_create.*

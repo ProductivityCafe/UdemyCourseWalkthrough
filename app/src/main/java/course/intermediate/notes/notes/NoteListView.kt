@@ -5,14 +5,13 @@ import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import course.intermediate.notes.models.Note
-import kotlinx.android.synthetic.main.fragment_notes_list.*
 import kotlinx.android.synthetic.main.fragment_notes_list.view.*
 
 class NoteListView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 1
-): ConstraintLayout(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private lateinit var adapter: NoteAdapter
     private lateinit var touchActionDelegate: NotesListFragment.TouchActionDelegate

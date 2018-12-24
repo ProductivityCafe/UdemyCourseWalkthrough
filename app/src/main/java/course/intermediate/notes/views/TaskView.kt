@@ -23,23 +23,24 @@ class TaskView @JvmOverloads constructor(
         titleView.text = task.title
 
         task.todos.forEachIndexed { todoIndex, todo ->
-            val todoView = (LayoutInflater.from(context).inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
-                initView(todo) { isChecked ->
+            val todoView =
+                (LayoutInflater.from(context).inflate(R.layout.view_todo, todoContainer, false) as TodoView).apply {
+                    initView(todo) { isChecked ->
 
-                    todoCheckedCallback.invoke(todoIndex, isChecked)
+                        todoCheckedCallback.invoke(todoIndex, isChecked)
 
-                    if (isTaskComplete()) {
-                        createStrikeThrough()
-                    } else {
-                        removeStrikeThrough()
+                        if (isTaskComplete()) {
+                            createStrikeThrough()
+                        } else {
+                            removeStrikeThrough()
+                        }
                     }
                 }
-            }
             todoContainer.addView(todoView)
         }
     }
 
-    fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
+    private fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
 
     private fun createStrikeThrough() {
         titleView.apply {

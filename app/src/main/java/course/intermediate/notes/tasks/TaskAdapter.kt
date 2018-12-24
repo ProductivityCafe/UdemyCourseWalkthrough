@@ -15,15 +15,16 @@ class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf(),
     val touchActionDelegate: TasksListFragment.TouchActionDelegate,
     val dataActionDelegate: TaskListViewContract
-): BaseRecyclerAdapter<Task>(taskList) {
+) : BaseRecyclerAdapter<Task>(taskList) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder = if (viewType == TYPE_INFO) {
-        TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
-    } else {
-        AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+        if (viewType == TYPE_INFO) {
+            TaskViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false))
+        } else {
+            AddButtonViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_add_button, parent, false))
+        }
 
-    inner class TaskViewHolder(view: View): BaseViewHolder<Task>(view) {
+    inner class TaskViewHolder(view: View) : BaseViewHolder<Task>(view) {
 
         override fun onBind(data: Task, listIndex: Int) {
             (view as TaskView).initView(data) { todoIndex, isChecked ->
@@ -33,7 +34,7 @@ class TaskAdapter(
 
     }
 
-    inner class AddButtonViewHolder(view: View): BaseRecyclerAdapter.AddButtonViewHolder(view) {
+    inner class AddButtonViewHolder(view: View) : BaseRecyclerAdapter.AddButtonViewHolder(view) {
         override fun onBind(data: Unit, listIndex: Int) {
             view.buttonText.text = view.context.getText(R.string.add_button_task)
 

@@ -2,16 +2,17 @@ package course.intermediate.notes.navigation
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import course.intermediate.notes.R
 import course.intermediate.notes.create.CreateActivity
 import course.intermediate.notes.notes.NotesListFragment
 import course.intermediate.notes.tasks.TasksListFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 
-class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate, NotesListFragment.TouchActionDelegate {
+class NavigationActivity : AppCompatActivity(), TasksListFragment.TouchActionDelegate,
+    NotesListFragment.TouchActionDelegate {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
