@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<course.intermediate.notes.views.TodoView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,4 +29,5 @@
             android:layout_marginStart="@dimen/item_margin_default"
             android:layout_marginEnd="@dimen/item_margin_default"
             tools:text="Hello World!"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</course.intermediate.notes.views.TodoView>

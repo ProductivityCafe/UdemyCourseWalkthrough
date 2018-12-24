@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import course.intermediate.notes.R
 import course.intermediate.notes.foundations.BaseRecyclerAdapter
 import course.intermediate.notes.models.Task
+import course.intermediate.notes.views.TodoView
 import kotlinx.android.synthetic.main.item_task.view.*
-import kotlinx.android.synthetic.main.view_todo.view.*
 
 class TaskAdapter(
     taskList: MutableList<Task> = mutableListOf()
@@ -23,9 +23,8 @@ class TaskAdapter(
             view.titleView.text = data.title
 
             data.todos.forEach {todo ->
-                val todoView = LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todoContainer, false).apply {
-                    descriptionView.text = todo.description
-                    completeCheckBox.isChecked = todo.isComplete
+                val todoView = (LayoutInflater.from(view.context).inflate(R.layout.view_todo, view.todoContainer, false) as TodoView).apply {
+                    initView(todo)
                 }
                 view.todoContainer.addView(todoView)
             }
