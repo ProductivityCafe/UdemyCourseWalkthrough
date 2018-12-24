@@ -40,23 +40,18 @@ class TasksListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         recyclerView.layoutManager = LinearLayoutManager(context)
         adapter = TaskAdapter(
             touchActionDelegate = touchActionDelegate
         )
         recyclerView.adapter = adapter
-
         bindViewModel()
     }
 
     private fun bindViewModel() {
         viewModel = ViewModelProviders.of(this).get(TaskViewModel::class.java)
-
         viewModel.taskListLiveData.observe(this, Observer { taskList ->
-
             adapter.updateList(taskList)
-
         })
     }
 
