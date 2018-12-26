@@ -2,8 +2,9 @@ package course.intermediate.notes.tasks
 
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
+import javax.inject.Inject
 
-class TaskModel {
+class TaskModel @Inject constructor() {
 
     fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
