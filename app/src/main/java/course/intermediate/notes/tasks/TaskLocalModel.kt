@@ -4,9 +4,9 @@ import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
 import javax.inject.Inject
 
-class TaskModel @Inject constructor() {
+class TaskLocalModel @Inject constructor() : ITaskModel {
 
-    fun getFakeData(): MutableList<Task> = mutableListOf(
+    override fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
             "Testing One!", mutableListOf(
                 Todo("Test One!", true),
@@ -22,4 +22,19 @@ class TaskModel @Inject constructor() {
         )
     )
 
+    override fun addTask(note: Task, callback: SuccessCallback) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun updateTask(note: Task, callback: SuccessCallback) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun deleteTask(note: Task, callback: SuccessCallback) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun retrieveTasks(): List<Task> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
