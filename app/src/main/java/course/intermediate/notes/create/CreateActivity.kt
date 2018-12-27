@@ -50,6 +50,14 @@ class CreateActivity : AppCompatActivity(), CreateNoteFragment.OnFragmentInterac
                                 Toast.makeText(this@CreateActivity, getString(R.string.toast_error_saving), Toast.LENGTH_SHORT).show()
                             }
                         }
+                    } else if (this is CreateNoteFragment) {
+                        this.saveNote { success ->
+                            if (success) {
+                                this@CreateActivity.supportFinishAfterTransition()
+                            } else {
+                                Toast.makeText(this@CreateActivity, getString(R.string.toast_error_saving), Toast.LENGTH_SHORT).show()
+                            }
+                        }
                     }
 
                 }

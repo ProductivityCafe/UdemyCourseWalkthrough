@@ -1,5 +1,6 @@
 package course.intermediate.notes.notes
 
+import android.util.Log
 import course.intermediate.notes.models.Note
 import javax.inject.Inject
 
@@ -11,7 +12,8 @@ class NoteLocalModel @Inject constructor() : INoteModel {
     )
 
     override fun addNote(note: Note, callback: SuccessCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Log.d("UdemyCourse", note.toString())
+        callback.invoke(true)
     }
 
     override fun updateNote(note: Note, callback: SuccessCallback) {
