@@ -7,6 +7,7 @@
 
     <string name="title_task">Tasks</string>
     <string name="title_note">Notes</string>
+    <string name="title_save">Save</string>
 
     <string name="add_button_task">Add New Task</string>
     <string name="add_button_note">Add New Note</string>
