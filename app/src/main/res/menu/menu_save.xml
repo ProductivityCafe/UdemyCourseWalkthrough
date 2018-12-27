@@ -4,7 +4,7 @@
     <item
             android:id="@+id/saveItem"
             android:title="@string/title_save"
-            android:iconTint="@color/black"
+            app:iconTint="@color/black"
             app:showAsAction="always"
     />
 

@@ -3,6 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="image_icon_default">32dp</dimen>
+
     <dimen name="elevation_default">2dp</dimen>
 
     <dimen name="simple_item_view_height">128dp</dimen>
