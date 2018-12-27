@@ -10,9 +10,11 @@ import android.view.ViewGroup
 
 import course.intermediate.notes.R
 import course.intermediate.notes.foundations.ApplicationScope
+import course.intermediate.notes.foundations.NullFieldChecker
 import course.intermediate.notes.foundations.StateChangeTextWatcher
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
+import course.intermediate.notes.tasks.ITaskModel
 import course.intermediate.notes.tasks.TaskLocalModel
 import course.intermediate.notes.views.CreateTodoView
 import kotlinx.android.synthetic.main.fragment_create_task.*
@@ -26,7 +28,7 @@ private const val MAX_TODO_COUNT = 5
 class CreateTaskFragment : Fragment() {
 
     @Inject
-    lateinit var model: TaskLocalModel
+    lateinit var model: ITaskModel
 
     private var listener: OnFragmentInteractionListener? = null
 
@@ -89,7 +91,9 @@ class CreateTaskFragment : Fragment() {
         containerView.removeView(view)
     }
 
-    private fun canAddTodos(): Boolean = containerView.childCount < MAX_TODO_COUNT + 1
+    private fun canAddTodos(): Boolean = (containerView.childCount < MAX_TODO_COUNT + 1) &&
+            !(containerView.getChildAt(containerView.childCount - 1) as NullFieldChecker).hasNullField()
+
 
     private fun isTaskEmpty(): Boolean = createTaskView.taskEditText.editableText.isNullOrEmpty()
 
