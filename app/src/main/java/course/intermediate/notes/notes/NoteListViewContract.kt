@@ -1,5 +1,7 @@
 package course.intermediate.notes.notes
 
-interface NoteListViewContract {
+import course.intermediate.notes.models.Note
 
+interface NoteListViewContract {
+    fun onDeleteNote(note: Note)
 }

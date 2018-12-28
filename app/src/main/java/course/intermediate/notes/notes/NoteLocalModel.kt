@@ -10,7 +10,7 @@ class NoteLocalModel @Inject constructor() : INoteModel {
     private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Note> = retrieveNotes().toMutableList()
-    
+
     override fun addNote(note: Note, callback: SuccessCallback) {
         databaseClient.noteDAO().addNote(note)
         callback.invoke(true)
