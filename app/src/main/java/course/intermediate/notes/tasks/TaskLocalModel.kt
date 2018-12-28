@@ -14,15 +14,15 @@ class TaskLocalModel @Inject constructor() : ITaskModel {
     override fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
             "Testing One!", mutableListOf(
-                Todo("Test One!", true),
-                Todo("Test Two!")
+                Todo(description = "Test One!", isComplete = true),
+                Todo(description = "Test Two!")
             )
         ),
         Task("Testing Two!"),
         Task(
             "Testing Three!", mutableListOf(
-                Todo("Test A!"),
-                Todo("Test B!")
+                Todo(description = "Test A!"),
+                Todo(description = "Test B!")
             )
         )
     )
