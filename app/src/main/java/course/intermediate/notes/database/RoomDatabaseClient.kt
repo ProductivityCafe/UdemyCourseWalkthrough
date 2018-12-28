@@ -25,7 +25,7 @@ abstract class RoomDatabaseClient : RoomDatabase() {
             return instance!!
         }
 
-        fun createDatabase(context: Context): RoomDatabaseClient {
+        private fun createDatabase(context: Context): RoomDatabaseClient {
             return Room.databaseBuilder(context, RoomDatabaseClient::class.java, DB_NAME).build()
         }
 

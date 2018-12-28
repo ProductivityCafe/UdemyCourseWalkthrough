@@ -1,10 +1,14 @@
 package course.intermediate.notes.notes
 
 import android.util.Log
+import course.intermediate.notes.application.NoteApplication
+import course.intermediate.notes.database.RoomDatabaseClient
 import course.intermediate.notes.models.Note
 import javax.inject.Inject
 
 class NoteLocalModel @Inject constructor() : INoteModel {
+
+    private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Note> = mutableListOf(
         Note("pi is not exactly 3.14"),

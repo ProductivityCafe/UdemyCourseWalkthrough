@@ -1,11 +1,15 @@
 package course.intermediate.notes.tasks
 
 import android.util.Log
+import course.intermediate.notes.application.NoteApplication
+import course.intermediate.notes.database.RoomDatabaseClient
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
 import javax.inject.Inject
 
 class TaskLocalModel @Inject constructor() : ITaskModel {
+
+    private var databaseClient = RoomDatabaseClient.getInstance(NoteApplication.instance.applicationContext)
 
     override fun getFakeData(): MutableList<Task> = mutableListOf(
         Task(
