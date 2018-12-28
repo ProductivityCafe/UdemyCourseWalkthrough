@@ -34,6 +34,9 @@ dependencies {
     def lifecycle_version = "2.0.0"
     def room_version = "2.1.0-alpha03"
 
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.0'
+
     // Room Library
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
