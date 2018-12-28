@@ -11,6 +11,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/item_margin_default"
+            android:layout_marginEnd="@dimen/item_margin_small"
             android:layout_marginTop="@dimen/item_margin_default"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

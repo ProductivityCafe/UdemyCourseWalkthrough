@@ -8,12 +8,25 @@
     <TextView
             android:id="@+id/titleView"
             android:text="TextView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/item_margin_default"
+            android:layout_marginEnd="@dimen/item_margin_small"
             android:layout_marginTop="@dimen/item_margin_default"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageButton"/>
+
+    <ImageButton
+            android:id="@+id/imageButton"
+            android:src="@drawable/ic_delete"
+            android:layout_width="@dimen/image_icon_default"
+            android:layout_height="@dimen/image_icon_default"
+            android:background="@color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleView"
+            app:layout_constraintBottom_toBottomOf="@id/titleView"
+            android:layout_marginEnd="@dimen/item_margin_default"/>
 
     <LinearLayout
             android:id="@+id/todoContainer"

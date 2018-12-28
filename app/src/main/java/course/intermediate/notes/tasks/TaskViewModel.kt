@@ -19,10 +19,26 @@ class TaskViewModel : ViewModel(), TaskListViewContract {
 
     init {
         Toothpick.inject(this, ApplicationScope.scope)
-        _taskListLiveData.postValue(model.getFakeData())
+        loadData()
+    }
+
+    fun loadData() {
+        _taskListLiveData.postValue(model.retrieveTasks().toMutableList())
     }
 
     override fun onTodoUpdated(taskIndex: Int, todoIndex: Int, isComplete: Boolean) {
-        _taskListLiveData.value?.get(taskIndex)?.todos?.get(todoIndex)?.isComplete = isComplete
+        _taskListLiveData.value?.let {
+            model.updateTodo(it.get(taskIndex).todos.get(todoIndex)) {
+                loadData()
+            }
+        }
+    }
+
+    override fun onTaskDeleted(taskIndex: Int) {
+        _taskListLiveData.value?.let {
+            model.deleteTask(it[taskIndex]) {
+                loadData()
+            }
+        }
     }
 }
