@@ -19,13 +19,12 @@ class NoteLocalModel @Inject constructor() : INoteModel {
                     withTimeout(TIMEOUT_DURATION_MILLIS) {
                         function.invoke()
                     }
-                    true
                 } catch (e: java.lang.Exception) {
-                    false
+                    callback.invoke(false)
                 }
             }
-
-            callback.invoke(job.await())
+            job.await()
+            callback.invoke(true)
         }
     }
 
