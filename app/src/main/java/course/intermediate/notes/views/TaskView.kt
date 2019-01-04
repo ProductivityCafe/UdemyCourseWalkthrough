@@ -52,6 +52,4 @@ class TaskView @JvmOverloads constructor(
             todoContainer.addView(todoView)
         }
     }
-
-    private fun isTaskComplete(): Boolean = task.todos.filter { !it.isComplete }.isEmpty()
 }
