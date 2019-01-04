@@ -34,7 +34,7 @@ class TaskView @JvmOverloads constructor(
             deleteCallback.invoke()
         }
 
-        if (isTaskComplete()) {
+        if (task.isComplete()) {
             this@TaskView.titleView.setStrikeThrough()
         } else {
             this@TaskView.titleView.removeStrikeThrough()
