@@ -8,6 +8,16 @@ abstract class BaseRecyclerAdapter<T : Any>(
     protected val masterList: MutableList<T> = mutableListOf()
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    fun onItemDeleted(indexInList: Int, indexInView: Int) {
+        masterList.removeAt(indexInList)
+        notifyItemRemoved(indexInView)
+    }
+
+    fun onItemUpdated(newItem: T, indexInList: Int, indexInView: Int) {
+        masterList[indexInList] = newItem
+        notifyItemChanged(indexInView)
+    }
+
     fun updateList(list: List<T>) {
         masterList.clear()
         masterList.addAll(list)

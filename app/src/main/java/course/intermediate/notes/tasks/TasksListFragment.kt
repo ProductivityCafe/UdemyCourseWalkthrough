@@ -56,6 +56,15 @@ class TasksListFragment : Fragment() {
         viewModel.taskListLiveData.observe(this, Observer { taskList ->
             contentView.updateList(taskList)
         })
+
+        viewModel.stateChangedLiveData.observe(this, Observer { itemState ->
+            when(itemState) {
+                is TaskViewModel.ItemState.ItemUpdated ->
+                    contentView.updateItem(itemState.newTask, itemState.indexInList, itemState.indexInView)
+                is TaskViewModel.ItemState.ItemDeleted ->
+                    contentView.deleteItem(itemState.indexInList, itemState.indexInView)
+            }
+        })
     }
 
     companion object {

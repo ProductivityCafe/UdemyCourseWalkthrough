@@ -8,7 +8,6 @@ import course.intermediate.notes.models.Task
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import toothpick.Toothpick
-import toothpick.config.Module
 import javax.inject.Inject
 
 class TaskViewModel : ViewModel(), TaskListViewContract {
@@ -18,6 +17,9 @@ class TaskViewModel : ViewModel(), TaskListViewContract {
 
     private val _taskListLiveData: MutableLiveData<MutableList<Task>> = MutableLiveData()
     val taskListLiveData: LiveData<MutableList<Task>> = _taskListLiveData
+
+    private val _stateChangeLiveData: MutableLiveData<ItemState> = MutableLiveData()
+    val stateChangedLiveData: LiveData<ItemState> = _stateChangeLiveData
 
     init {
         Toothpick.inject(this, ApplicationScope.scope)
@@ -34,14 +36,22 @@ class TaskViewModel : ViewModel(), TaskListViewContract {
 
     override fun onTodoUpdated(taskIndex: Int, todoIndex: Int, isComplete: Boolean) {
         GlobalScope.launch {
-            _taskListLiveData.value?.let {
-                val todo = it[taskIndex].todos[todoIndex]
+            _taskListLiveData.value?.let { taskList ->
+                val todo = taskList[taskIndex].todos[todoIndex]
                 todo.apply {
                     this.isComplete = isComplete
-                    this.taskId = it[taskIndex].uid
+                    this.taskId = taskList[taskIndex].uid
                 }
-                model.updateTodo(todo) {
-                    loadData()
+                model.updateTodo(todo) { success ->
+                    if (success) {
+                        _stateChangeLiveData.postValue(
+                            ItemState.ItemUpdated(
+                                newTask = taskList[taskIndex],
+                                il = taskIndex,
+                                iv = taskIndex + 1
+                            )
+                        )
+                    }
                 }
             }
         }
@@ -49,11 +59,23 @@ class TaskViewModel : ViewModel(), TaskListViewContract {
 
     override fun onTaskDeleted(taskIndex: Int) {
         GlobalScope.launch {
-            _taskListLiveData.value?.let {
-                model.deleteTask(it[taskIndex]) {
-                    loadData()
+            _taskListLiveData.value?.let { taskList ->
+                model.deleteTask(taskList[taskIndex]) { success ->
+                    if (success) {
+                        _stateChangeLiveData.postValue(
+                            ItemState.ItemDeleted(
+                                il = taskIndex,
+                                iv = taskIndex + 1
+                            )
+                        )
+                    }
                 }
             }
         }
+    }
+
+    sealed class ItemState(val indexInList: Int, val indexInView: Int) {
+        class ItemUpdated(val newTask: Task, il: Int, iv: Int) : ItemState(il, iv)
+        class ItemDeleted(il: Int, iv: Int) : ItemState(il, iv)
     }
 }

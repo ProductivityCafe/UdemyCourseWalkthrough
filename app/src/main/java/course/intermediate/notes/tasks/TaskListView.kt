@@ -42,4 +42,12 @@ class TaskListView @JvmOverloads constructor(
         adapter.updateList(list)
     }
 
+    fun updateItem(newTask: Task, indexInList: Int, indexInView: Int) {
+        adapter.onItemUpdated(newItem = newTask, indexInList = indexInList, indexInView = indexInView)
+    }
+
+    fun deleteItem(indexInList: Int, indexInView: Int) {
+        adapter.onItemDeleted(indexInList = indexInList, indexInView = indexInView)
+    }
+
 }
