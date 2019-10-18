@@ -3,19 +3,17 @@ package course.intermediate.notes.create
 import android.content.Context
 import android.os.Bundle
 import android.text.Editable
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import course.intermediate.notes.R
-import course.intermediate.notes.foundations.ApplicationScope
+import course.intermediate.notes.foundations.CreateActivityScope
 import course.intermediate.notes.foundations.NullFieldChecker
 import course.intermediate.notes.foundations.StateChangeTextWatcher
 import course.intermediate.notes.models.Task
 import course.intermediate.notes.models.Todo
 import course.intermediate.notes.tasks.ITaskModel
-import course.intermediate.notes.tasks.TaskLocalModel
 import course.intermediate.notes.views.CreateTodoView
 import kotlinx.android.synthetic.main.fragment_create_task.*
 import kotlinx.android.synthetic.main.view_create_task.view.*
@@ -32,12 +30,15 @@ class CreateTaskFragment : Fragment() {
     @Inject
     lateinit var model: ITaskModel
 
+    @Inject
+    lateinit var stateModel: StateModel
+
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Toothpick.inject(this, ApplicationScope.scope)
+        Toothpick.inject(this, CreateActivityScope.scope)
     }
 
     override fun onCreateView(
@@ -53,7 +54,7 @@ class CreateTaskFragment : Fragment() {
 
         createTaskView.taskEditText.addTextChangedListener(object: StateChangeTextWatcher() {
             override fun afterTextChanged(s: Editable?) {
-
+                stateModel.updateState(s.toString())
                 if (!s.isNullOrEmpty() && previousValue.isNullOrEmpty()) {
                     addTodoView()
                 }

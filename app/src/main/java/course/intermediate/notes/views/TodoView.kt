@@ -1,7 +1,6 @@
 package course.intermediate.notes.views
 
 import android.content.Context
-import android.graphics.Paint
 import android.util.AttributeSet
 import androidx.constraintlayout.widget.ConstraintLayout
 import course.intermediate.notes.models.Todo

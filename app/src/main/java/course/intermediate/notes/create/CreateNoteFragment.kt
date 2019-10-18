@@ -2,12 +2,15 @@ package course.intermediate.notes.create
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import course.intermediate.notes.R
-import course.intermediate.notes.foundations.ApplicationScope
+import course.intermediate.notes.foundations.CreateActivityScope
 import course.intermediate.notes.foundations.NullFieldChecker
 import course.intermediate.notes.models.Note
 import course.intermediate.notes.notes.INoteModel
@@ -22,12 +25,15 @@ class CreateNoteFragment : Fragment(), NullFieldChecker {
     @Inject
     lateinit var model: INoteModel
 
+    @Inject
+    lateinit var stateModel: StateModel
+
     private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        Toothpick.inject(this, ApplicationScope.scope)
+        Toothpick.inject(this, CreateActivityScope.scope)
     }
 
     override fun onCreateView(
@@ -36,6 +42,22 @@ class CreateNoteFragment : Fragment(), NullFieldChecker {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_create_note, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        noteEditText.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                Log.d("Mickey", "text change")
+                stateModel.updateState(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
     }
 
     fun saveNote(callback: (Boolean) -> Unit) {

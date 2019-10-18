@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import course.intermediate.notes.foundations.ApplicationScope
 import course.intermediate.notes.models.Note
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import toothpick.Toothpick
-import toothpick.config.Module
 import javax.inject.Inject
 
 class NoteViewModel : ViewModel(), NoteListViewContract {

@@ -1,7 +1,6 @@
 package course.intermediate.notes.foundations
 
 import android.view.View
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 abstract class BaseRecyclerAdapter<T : Any>(
