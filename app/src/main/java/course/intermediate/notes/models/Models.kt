@@ -31,7 +31,7 @@ class Task @JvmOverloads constructor(
 }
 
 @Entity(tableName = "tasks")
-open class TaskEntity(
+open class MTaskEntity(
     @PrimaryKey
     var uid: Long = UUID.randomUUID().leastSignificantBits,
     @ColumnInfo
